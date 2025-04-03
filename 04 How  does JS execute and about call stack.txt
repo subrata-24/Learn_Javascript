@@ -1,0 +1,86 @@
+How JavaScript Executes Code: Execution Context & Call Stack
+JavaScript is a single-threaded language, meaning it executes one command at a time using a Call Stack. Let's break this down into simpler terms.
+1. Execution Context
+Whenever JavaScript code runs, it creates an Execution Context. The Execution Context has two main phases:
+(a) Memory Creation Phase (Creation Phase)
+- JavaScript scans the code and allocates memory for variables and functions.
+- Variables are set to `undefined`.
+- Functions are stored fully in memory.
+(b) Execution Phase
+- JavaScript executes the code line by line.
+- It replaces `undefined` values with actual values.
+- Functions are invoked when called, creating a new Execution Context.
+2. Global Execution Context (GEC)
+- The first Execution Context created when JavaScript starts.
+- Contains a special object `this`, referring to the global object.
+- Stores variables and functions.
+3. Function Execution Context (FEC)
+- A new Execution Context is created when a function is called.
+- Goes through Memory Creation and Execution Phases.
+- Is deleted after execution.
+4. Call Stack (Execution Stack)
+- The Call Stack manages function execution in JavaScript.
+- When a function is called, its Execution Context is pushed onto the stack.
+- When a function finishes execution, its Execution Context is popped from the stack.
+
+Example:
+function add(a, b) {
+    return a + b;
+}
+
+function calculate() {
+    let x = add(10, 5);
+    return x;
+}
+
+console.log(calculate());
+Call Stack Execution:
+1. Global Execution Context (GEC) is created.
+2. `calculate()` is called → A new Execution Context for `calculate()` is pushed onto the Call Stack.
+3. Inside `calculate()`, `add(10, 5)` is called → Execution Context for `add()` is pushed.
+4. `add()` executes, returns `15`, and its Execution Context is removed.
+5. `calculate()` receives the value, finishes execution, and its Execution Context is removed.
+6. `console.log(15)` executes and prints `15`.
+5. Summary
+- JavaScript executes code using the Execution Context.
+- Two phases: Memory Creation and Execution.
+- Call Stack manages function execution order.
+- Each function call creates a new Execution Context, which is removed after execution.
+- JavaScript executes synchronously, handling one task at a time.
+JavaScript Code Breakdown:
+let val1 = 10;
+let val2 = 5;
+
+function addNum(num1, num2) {
+    let total = num1 + num2;
+    return total;
+}
+
+let result1 = addNum(val1, val2);
+let result2 = addNum(10, 2);
+Execution Steps:
+1. Global Execution Context (GEC) is created.
+2. Memory Creation Phase assigns `undefined` to variables and stores functions.
+3. Execution Phase assigns values and executes functions.
+4. Function Execution Contexts are pushed and popped from the Call Stack.
+Call Stack Visualization:
+1️⃣ At the start: [ GEC ]
+2️⃣ `addNum(10, 5)` called: [ GEC, addNum(10, 5) ]
+3️⃣ After `addNum(10, 5)`: [ GEC ]
+4️⃣ `addNum(10, 2)` called: [ GEC, addNum(10, 2) ]
+5️⃣ After `addNum(10, 2)`: [ GEC ]
+6️⃣ End of Execution: (empty)
+Final Output:
+console.log(result1); // 15
+console.log(result2); // 12
+Key Takeaways:
+- Execution Context is created for each function call.
+- Memory Creation Phase initializes variables as `undefined`.
+- Execution Phase assigns actual values and runs code line by line.
+- Call Stack manages function execution order (LIFO - Last In, First Out).
+- Execution Context is removed once a function completes.
+
+
+
+
+//You  can virtually visualize the call stack by this site:http://latentflip.com/loupe/?code=Y29uc3QgZnMgPSByZXF1aXJlKCJmcyIpOw0KDQoNCmZ1bmN0aW9uIHNpbW15KGNiKSB7DQogICAgZnMucmVhZEZpbGUoImEudHh0IiwgInV0Zi04IiwgZnVuY3Rpb24gKGVyciwgZGF0YSkgew0KICAgICAgICBjYihkYXRhKTsNCiAgICB9KQ0KfQ0KDQpmdW5jdGlvbiBvbkRvbmUoZGF0YSkgew0KICAgIGNvbnNvbGUubG9nKGRhdGEpOw0KfQ0KDQoNCg0Kc2ltbXkob25Eb25lKTsNCg%3D%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
