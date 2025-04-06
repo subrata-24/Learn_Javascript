@@ -24,6 +24,10 @@ myArray.forEach(printme); // Same result as above
 // ✅ IMPORTANT:
 // forEach is a higher-order function that executes the provided function once for each array element.
 
+const arr = ["apple", "banana", "cherry", "date"];
+arr.forEach((value, index, array) => {
+    console.log(`Index: ${index}, Value: ${value}, array: ${array}`);
+});
 
 // ---------------------------------
 // forEach with array of objects
