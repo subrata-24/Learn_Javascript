@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learn about DOM</title>
+  <style>
+    .bg-black {
+      background-color: #212121;
+      color: aliceblue;
+    }
+  </style>
+</head>
+<body class="bg-black">
+  <div>
+    <h1 id="title" class="heading">
+      DOM learning with me
+      <span style="display: none;">Test <textarea name="" id=""></textarea></span>
+    </h1>
+
+    <h2>Lorem ipsum dolor sit.2</h2>
+    <h2>Lorem ipsum dolor sit.3</h2>
+    <h2>Lorem ipsum dolor sit.4</h2>
+
+    <input type="password" name="" id="">
+
+    <p>Lorem ipsum dolor sit amet.</p>
+
+    <ul>
+      <li class="item-list">one</li>
+      <li class="item-list">two</li>
+      <li class="item-list">three</li>
+      <li class="item-list">four</li>
+    </ul>
+  </div>
+
+  <script>
+    // ===============================
+    // DOM Learning Notes in JS
+    // ===============================
+
+    // -----------------------------
+    // 1. Get element by ID
+    const title = document.getElementById('title');
+    // 📤 Output: <h1 id="title" class="heading">...</h1>
+    // 📘 Return Type: HTMLElement
+    // 🧠 Selects an element with a specific ID.
+
+    // -----------------------------
+    // 2. Styling the element
+    title.style.backgroundColor = 'blue';
+    title.style.padding = '15px';
+    title.style.borderRadius = '20px';
+    // 🧠 These lines change the CSS styles directly via JS.
+
+    // -----------------------------
+    // 3. Content extraction
+    console.log("innerText:", title.innerText);
+    // 📤 Output: "DOM learning with me"
+    // 🧠 Shows only the visible text (ignores display: none)
+
+    console.log("innerHTML:", title.innerHTML);
+    // 📤 Output: DOM learning with me <span style="display: none;">Test <textarea name="" id=""></textarea></span>
+    // 🧠 Includes hidden text and inner HTML tags
+
+    console.log("textContent:", title.textContent);
+    // 📤 Output: "DOM learning with me Test"
+    // 🧠 Includes all text, even hidden ones
+
+    // -----------------------------
+    // 4. Using querySelector
+    console.log(document.querySelector('h2'));
+    // 📤 Output: First <h2> element
+
+    console.log(document.querySelector('#title'));
+    // 📤 Output: <h1 id="title" ...>
+
+    console.log(document.querySelector('.heading'));
+    // 📤 Output: Same <h1> element
+
+    console.log(document.querySelector('input[type="password"]'));
+    // 📤 Output: <input type="password" ...>
+
+    console.log(document.querySelector('p:first-child'));
+    // 📤 Output: null (because <p> is not the first child of <div>)
+
+    console.log(document.querySelector('h1:first-child'));
+    // 📤 Output: <h1 id="title" class="heading">...</h1>
+
+    // console.log(document.querySelector('h1:second-child'));
+    // ❌ Invalid selector – will throw error if uncommented
+
+    // -----------------------------
+    // 5. Access <ul> and <li>
+    const myUL = document.querySelector('ul');
+    // 📤 Output: <ul>...</ul>
+
+    const turnGreen = myUL.querySelector('li');
+    // 📤 Output: First <li> (class=item-list)
+
+    // Apply styles
+    turnGreen.style.backgroundColor = 'green';
+    turnGreen.style.padding = '10px';
+
+    console.log("innerHTML:", turnGreen.innerHTML); // "one"
+    console.log("innerText:", turnGreen.innerText); // "one"
+
+    turnGreen.innerText = 'five'; // 🧠 Updates text content of first <li>
+
+    // -----------------------------
+    // 6. NodeList (querySelectorAll)
+    const tempAll = document.querySelectorAll('li');
+    // 📤 Output: NodeList(4) [li, li, li, li]
+
+    console.log(tempAll);
+
+    tempAll[1].style.color = 'green'; // Change color of second <li>
+
+    tempAll.forEach((item) => {
+      item.style.backgroundColor = 'black';
+    });
+    // 🧠 Loop over NodeList and update background color
+
+    // -----------------------------
+    // 7. HTMLCollection via class name
+    const allClass = document.getElementsByClassName('item-list');
+    // 📤 Output: HTMLCollection(4)
+
+    // allClass.forEach(...) ❌ doesn't work – HTMLCollection is not an array
+
+    // ✅ Convert to array
+    const myArray = Array.from(allClass);
+    // 📤 Output: Array of <li> elements
+
+    myArray.forEach((item) => {
+      console.log(item);
+    });
+    // 🧠 Logs each <li> element individually
+  </script>
+</body>
+</html>
