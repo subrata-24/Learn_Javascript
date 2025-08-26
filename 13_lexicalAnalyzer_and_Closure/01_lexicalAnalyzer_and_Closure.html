@@ -1,0 +1,80 @@
+<!-- 
+📌 What is this code about?
+This HTML+JavaScript code demonstrates **closures in JavaScript**, particularly 
+how a function can retain access to its lexical environment even after the outer 
+function has finished executing.
+
+📘 What topic does it cover?
+- Closures in JavaScript
+- Event handling (`onclick`)
+- DOM manipulation (`document.getElementById`, `document.body.style.backgroundColor`)
+- Functional programming (returning functions)
+
+⚙️ What is the working of the code?
+- A function `clickHandler(color)` is defined that returns another function 
+(a closure) which changes the page's background color.
+- When a button is clicked, it triggers the returned inner function, which updates 
+the `backgroundColor` using the `color` that was "closed over".
+
+🧠 How does it work?
+- `clickHandler("orange")` returns a function that remembers `color = "orange"`, and
+ assigns it to the `onclick` event of the "orange" button.
+- Same for `"green"`.
+- This works due to **closure** — the returned function retains access to `color` 
+even after `clickHandler` has completed execution.
+
+📗 Important concepts:
+🔹 **Closure**: A function that remembers the variables from its enclosing scope 
+even when called outside that scope.
+🔹 **Lexical Scope**: Scope determined by the physical placement of code in the 
+source file.
+🔹 **DOM Manipulation**: Changing the document structure or style dynamically using 
+JavaScript.
+
+📢 Common pitfalls:
+- Not returning the function inside `clickHandler()` would result in the color 
+changing immediately when assigning handlers.
+- Forgetting to use closures may lead to unexpected behavior when using loops or 
+delayed callbacks.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure aur chai</title>
+</head>
+
+<body style="background-color: #313131;">
+    <!-- Two buttons with unique IDs for background color change -->
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+
+<script>
+    // This function demonstrates closure:
+    // It accepts a color and returns a function that remembers this color value.
+    // When the returned function is called (via button click), it changes the body's background color.
+    function clickHandler(color) {
+        // This inner function has access to the `color` variable even after `clickHandler` has finished execution.
+        return function () {
+            // When this function is executed, it changes the background color using the remembered `color`
+            document.body.style.backgroundColor = `${color}`;
+        }
+    }
+
+    // Assigning the returned functions to the `onclick` event of buttons
+    // These will NOT execute immediately because we are passing a reference to a function
+    // Due to closures, each function remembers the color passed during creation
+    document.getElementById('orange').onclick = clickHandler("orange");
+    document.getElementById('green').onclick = clickHandler("green");
+
+    // 👇 Here's what happens:
+    // clickHandler("orange") → returns a function → assigned to button's onclick
+    // Later, when button is clicked, that returned function runs and sets the color
+</script>
+
+</html>

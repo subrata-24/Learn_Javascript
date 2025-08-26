@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM learning</title>
+</head>
+
+<body style="background-color: #212121; color: aliceblue;">
+    <!-- Parent container -->
+    <div class="parent">
+        <div class="day">Saturday</div>
+        <div class="day">Sunday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+    </div>
+</body>
+
+<script>
+    // Selecting the element with class "parent"
+    const parent = document.querySelector('.parent');
+
+    // -------------------------------
+    // Working with children elements
+    // -------------------------------
+
+    // Get a collection of child elements (HTMLCollection)
+    // console.log(parent.children); // Logs all direct child elements
+
+    // Accessing the second child (index 1, which is "Sunday")
+    // console.log(parent.children[1]); // Logs <div class="day">Sunday</div>
+
+    // Getting the inner text of that child
+    // console.log(parent.children[1].innerHTML); // Logs "Sunday"
+
+    // Loop through all children and log their content
+    /*
+    for (let i = 0; i < parent.children.length; i++) {
+        console.log(parent.children[i].innerHTML);
+    }
+    */
+
+    // ----------------------------------
+    // Styling a specific child element
+    // ----------------------------------
+    parent.children[1].style.color = 'orange'; // Makes "Sunday" text orange
+
+    // ----------------------------------
+    // Getting first and last child elements
+    // ----------------------------------
+    // console.log(parent.firstElementChild); // Logs the first child: "Saturday"
+    // console.log(parent.lastElementChild);  // Logs the last child: "Wednesday"
+
+    // ----------------------------------
+    // DOM Navigation
+    // ----------------------------------
+    const dayTwo = parent.children[1]; // "Sunday" element
+
+    // Get the parent of "Sunday" (which is the div with class="parent")
+    console.log(dayTwo.parentElement); // Logs the parent div
+
+    // Get the next sibling element (should be "Tuesday")
+    console.log(dayTwo.nextElementSibling); // Logs <div class="day">Tuesday</div>
+
+    // ----------------------------------
+    // Node-level access (includes text nodes, comments, etc.)
+    // ----------------------------------
+    console.log("Nodes: ", parent.childNodes);
+    // childNodes returns all child nodes, including text nodes (like line breaks and spaces).
+    // This is different from .children, which only includes element nodes.
+</script>
+
+</html>

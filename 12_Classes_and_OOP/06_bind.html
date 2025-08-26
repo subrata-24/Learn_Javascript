@@ -1,0 +1,97 @@
+<!-- 
+What is bind?
+→ `bind()` is a method in JavaScript used to fix the value of `this` inside a function.
+
+What it does?
+→ It creates a new function where `this` is permanently bound to a specific object 
+(e.g., a class instance).
+
+How it does?
+→ It returns a new version of the function with `this` locked to the object you pass.
+
+Necessity of it:
+→ In event listeners (like button clicks), `this` normally refers to the DOM element. 
+  But if we want to access class properties from inside the method, we must use `bind()` to keep `this` pointing to the class object.
+
+Workflow of it:
+1. Class method `handleClick()` is passed to an event listener.
+2. But when the event happens, `this` would normally refer to the button (DOM).
+3. So we use `.bind(this)` to fix `this` to the React class instance.
+4. Now inside `handleClick()`, `this.server` correctly refers to class property, 
+not the button.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Sets character encoding to UTF-8 (supports most characters in all languages) -->
+    <meta charset="UTF-8">
+
+    <!-- Makes sure the page is responsive to different screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Sets the title of the browser tab -->
+    <title>React</title>
+</head>
+
+<body>
+    <!-- A simple button element users can click -->
+    <button>Button Clicked</button>
+</body>
+
+<script>
+    // Define a class named React
+    class React {
+
+        // The constructor is automatically called when a new instance of the class is created
+        constructor() {
+            // `this.library` stores the name of the library
+            this.library = "React"
+
+            // `this.server` stores the URL string of the server
+            this.server = "https://localhost:300"
+
+            /*
+            Why use `.bind(this)` here?
+            - `this.handleClick` is a class method.
+            - When used directly in `addEventListener`, it loses its original `this` 
+            context.
+            - So we "bind" the method to the current object (`this` = instance of React 
+            class).
+            - Without `.bind(this)`, `this.server` would be `undefined` inside 
+            `handleClick`.
+            */
+
+            // Access the button in the DOM and attach a click event listener
+            document
+                .querySelector('button') // Selects the first <button> element on the 
+                // page
+                .addEventListener(
+                    'click',              // When the button is clicked...
+                    this.handleClick.bind(this)
+                    // Call `handleClick`, but with `this` permanently bound to the 
+                    // current React instance
+                )
+        }
+
+        // Define a method to run when the button is clicked
+        handleClick() {
+            // Log a message to the console
+            console.log("button clicked");
+
+            /*
+            `this.server` refers to the `server` property defined in the class constructor.
+            But this only works because we used `.bind(this)` when attaching the event listener.
+            Otherwise, `this` would point to the button element, not the class instance.
+            */
+            console.log(this.server);
+        }
+    }
+
+    // Create a new instance of the React class
+    const app = new React();
+    // This triggers the constructor and attaches the event listener to the button
+</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Learning more about DOM</title>
+</head>
+
+<body style="background-color: #212121; color: aliceblue;">
+
+</body>
+
+<script>
+    // ✅ Step 1: Create a new <div> element using JavaScript
+    const createDiv = document.createElement('div'); // This creates a new, empty <div> element
+    console.log(createDiv); // Logs the div before any content or styles are added
+
+    // ✅ Step 2: Set class and ID for the new div
+    createDiv.className = "heading";    // Adds class="heading"
+    createDiv.id = "jani na";           // Adds id="jani na"
+
+    // ✅ Step 3: Add an attribute to the div (title appears on hover)
+    createDiv.setAttribute("title", "title");
+
+    // ✅ Step 4: Add inline styles to the div
+    createDiv.style.backgroundColor = "#212121"; // Dark background to match page
+    createDiv.style.color = "green";             // Sets text color to green
+
+    // ❌ Not using innerText, which would overwrite any existing content:
+    // createDiv.innerText = "Subrata Biswas";
+    // createDiv.innerText = "My name is no One";
+
+    // ✅ Step 5: Add text using createTextNode (recommended approach)
+    const addText = document.createTextNode("Subrata Biswas");   // First piece of text
+    const addAnotherText = document.createTextNode(", is no One"); // Additional text
+
+    // ✅ Step 6: Append both text nodes to the div
+    createDiv.appendChild(addText);         // Adds first text
+    createDiv.appendChild(addAnotherText);  // Appends second text right after the first
+
+    // ✅ Step 7: Finally, attach the div to the actual document body
+    document.body.appendChild(createDiv);   // Adds the complete div to the page
+
+    // --------------------------------------------
+    // 🧠 Why use createTextNode + appendChild?
+    // --------------------------------------------
+    /*
+      ✅ Flexibility: You can add multiple pieces of text or mix elements and text together.
+      ✅ Control: Doesn't override existing children like innerText does.
+      ✅ Structured: Matches how the DOM tree is built and maintained.
+      ✅ Safe: Prevents unintended text overwrites and encourages modular DOM creation.
+    */
+</script>
+
+</html>
