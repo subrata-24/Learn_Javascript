@@ -32,4 +32,15 @@ const sendData = () => {
   })
 }
 
-sendData();
+const updateData = () => {
+    // We specify the resource to update by adding its ID in the URL (/1).
+    // PUT request replaces the entire data of that resource with new data.
+    makeRequest('PUT', "https://jsonplaceholder.typicode.com/posts/1", {
+        id: 1,
+        title: 'fooMA',
+        body: 'barMA',
+        userId: 1,
+    })
+}
+
+updateData();
