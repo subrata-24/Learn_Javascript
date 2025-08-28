@@ -52,18 +52,12 @@ const updateData = () => {
     .catch((err) => console.log(err));
 };
 
-const updateSingleData = () => {
+const deleteData = () => {
   makeRequest("https://jsonplaceholder.typicode.com/posts/1", {
-    method: "PATCH",
-    body: JSON.stringify({
-      title: "Title was changed",
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
+    method: "DELETE",
   })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 };
 
-updateSingleData();
+deleteData();
