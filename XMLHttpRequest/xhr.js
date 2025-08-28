@@ -43,4 +43,13 @@ const updateData = () => {
     })
 }
 
-updateData();
+const updateSingleData = () => {
+    // We specify the resource to update by adding its ID in the URL (/1).
+    // PATCH request only replace or update the specified data with new data.
+    makeRequest('PATCH', "https://jsonplaceholder.typicode.com/posts/1", {
+        //Here you must specified what you want to update and the updated value
+        title: 'Only this value is changed by PATCH',
+    })
+}
+
+updateSingleData();
