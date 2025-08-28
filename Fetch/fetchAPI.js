@@ -52,4 +52,18 @@ const updateData = () => {
     .catch((err) => console.log(err));
 };
 
-updateData();
+const updateSingleData = () => {
+  makeRequest("https://jsonplaceholder.typicode.com/posts/1", {
+    method: "PATCH",
+    body: JSON.stringify({
+      title: "Title was changed",
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
+
+updateSingleData();
