@@ -35,4 +35,21 @@ const sendData = () => {
     .catch((err) => console.log(err));
 };
 
-sendData();
+const updateData = () => {
+  makeRequest("https://jsonplaceholder.typicode.com/posts/1", {
+    method: "PUT",
+    body: JSON.stringify({
+      id: 1,
+      title: "fooma",
+      body: "barna",
+      userId: 1,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
+
+updateData();
