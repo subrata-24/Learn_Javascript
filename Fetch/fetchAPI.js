@@ -4,13 +4,7 @@ console.clear();
 // It only rejects on network errors.
 
 fetch("https://jsonplaceholder.typicode.com/posts/1", {
-  method: "PATCH",
-  body: JSON.stringify({
-    title: "fooBAA",
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8",
-  },
+  method: "DELETE",
 })
   .then((res) => {
     if (!res.ok) {
