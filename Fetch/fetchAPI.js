@@ -1,18 +1,19 @@
-console.clear()
+console.clear();
 
 // fetch does not reject on HTTP errors like 404 or 500.
 // It only rejects on network errors.
 
-fetch('https://jsonplaceholder.typicode.com/posts', {
-    method: "POST",
-    body: JSON.stringify({
-        title: "foo",
-        body: "bar",
-        userId: 1,
-    }),
-    headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-    },
+fetch("https://jsonplaceholder.typicode.com/posts/1", {
+  method: "PUT",
+  body: JSON.stringify({
+    id: 1,
+    title: "fooMA",
+    body: "barMA",
+    userId: 1,
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8",
+  },
 })
   .then((res) => {
     if (!res.ok) {
