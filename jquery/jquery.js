@@ -27,4 +27,13 @@ const addData = () => {
   }).then((res) => console.log(res));
 };
 
-addData();
+const updateData = () => {
+  makeRequest("https://jsonplaceholder.typicode.com/posts/1", "PUT", {
+    id: 1,
+    title: "foosefeaf",
+    body: "barsdasd",
+    userId: 1,
+  }).then((res) => console.log(res));
+};
+
+updateData();
