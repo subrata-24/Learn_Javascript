@@ -5,7 +5,15 @@ const makeRequest = async (config) => {
 };
 
 const getData = () => {
-  makeRequest("https://jsonplaceholder.typicode.com/posts/1")
+  makeRequest({
+    url: "https://jsonplaceholder.typicode.com/posts",
+    method: "post",
+    data: JSON.stringify({
+      title: "fooMA",
+      body: "barMA",
+      userId: 1,
+    }),
+  })
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err));
 };
