@@ -36,4 +36,10 @@ const updateData = () => {
   }).then((res) => console.log(res));
 };
 
-updateData();
+const updateSingleData = () => {
+  makeRequest("https://jsonplaceholder.typicode.com/posts/1", "PATCH", {
+    title: "Update only title",
+  }).then((res) => console.log(res));
+};
+
+updateSingleData();
