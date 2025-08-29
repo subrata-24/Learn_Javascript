@@ -42,4 +42,10 @@ const updateSingleData = () => {
   }).then((res) => console.log(res));
 };
 
-updateSingleData();
+const deleteData = () => {
+  makeRequest("https://jsonplaceholder.typicode.com/posts/1", "DELETE").then(
+    (res) => console.log(res)
+  );
+};
+
+deleteData();
