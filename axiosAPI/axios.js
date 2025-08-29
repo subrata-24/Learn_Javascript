@@ -33,4 +33,16 @@ const updateData = () => {
     .catch((err) => console.log(err));
 };
 
-updateData();
+const updateSingleData = () => {
+  makeRequest({
+    url: "https://jsonplaceholder.typicode.com/posts/1",
+    method: "patch",
+    data: JSON.stringify({
+      title: "I changed the title",
+    }),
+  })
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err));
+};
+
+updateSingleData();
